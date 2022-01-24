@@ -16,5 +16,12 @@ class HomeActivity : AppCompatActivity() {
             val Intent = Intent(this,EntreeActivity::class.java)
             startActivity(Intent)
         }
+
+        val platButton =findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.button)
+        platButton.setOnClickListener {
+
+            val Intent = Intent(this,PlatActivity::class.java)
+            startActivity(Intent)
+        }
     }
 }

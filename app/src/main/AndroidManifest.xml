@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant">
         <activity
+            android:name=".PlatActivity"
+            android:exported="false" />
+        <activity
             android:name=".EntreeActivity"
             android:exported="false" />
         <activity
