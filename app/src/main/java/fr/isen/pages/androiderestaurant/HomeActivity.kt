@@ -53,32 +53,10 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
-//RecyclerView
-        // getting the recyclerview by its id
-        val recyclerview = findViewById<RecyclerView>(R.id.rvStarter)
-
-        // this creates a vertical layout Manager
-        recyclerview.layoutManager = LinearLayoutManager(this)
-
-        // ArrayList of class ItemsViewModel
-        val data = ArrayList<ItemsViewModel>()
-
-        // This loop will create 20 Views containing
-        // the image with the count of view
-        for (i in 1..20) {
-            data.add(ItemsViewModel(R.string.home_starter1, "Item " + i))
-        }
-
-        // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(data)
-
-        // Setting the Adapter with the recyclerview
-        recyclerview.adapter = adapter
-
     }
 
     private fun changeActivity( category: String ) {
-        val Intent = Intent(this, StarterActivity::class.java).putExtra("category_type",category)
+        val Intent = Intent(this, DishActivity::class.java).putExtra("category_type",category)
         Log.i( "INFO", "End of HomeActivity")
         startActivity(Intent)
 
