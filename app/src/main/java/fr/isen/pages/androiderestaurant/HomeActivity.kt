@@ -1,53 +1,59 @@
 package fr.isen.pages.androiderestaurant
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 
 class HomeActivity : AppCompatActivity() {
 
+
+
+
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val entreeButton =findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.button2)
-        entreeButton.setOnClickListener {
+        val starterButton =findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnStarter)
+        val dishButton =findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnDish)
+        val dessertButton =findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnDessert)
 
-            val text = "Menu des entrées"
-            val duration = Toast.LENGTH_SHORT
 
-            val toast = Toast.makeText(applicationContext, text, duration)
-            toast.show()
+        starterButton.setOnClickListener {
 
-            val Intent = Intent(this,EntreeActivity::class.java)
-            startActivity(Intent)
+            //val text = "Menu des entrées"
+            //val duration = Toast.LENGTH_SHORT
+            //val toast = Toast.makeText(applicationContext, text, duration)
+            //toast.show()
+            changeActivity(getString(R.string.home_starter))
         }
 
-        val platButton =findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.button)
-        platButton.setOnClickListener {
 
-            val text = "Menu des plats"
-            val duration = Toast.LENGTH_SHORT
-
-            val toast = Toast.makeText(applicationContext, text, duration)
-            toast.show()
-
-            val Intent = Intent(this,PlatActivity::class.java)
-            startActivity(Intent)
+        dishButton.setOnClickListener {
+            //val text = "Menu des plats"
+            //val duration = Toast.LENGTH_SHORT
+            //val toast = Toast.makeText(applicationContext, text, duration)
+            //toast.show()
+            changeActivity(getString(R.string.home_dish))
         }
 
-        val dessertButton =findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.button3)
+
         dessertButton.setOnClickListener {
+            //val text = "Menu des desserts"
+            //val duration = Toast.LENGTH_SHORT
+            //val toast = Toast.makeText(applicationContext, text, duration)
+            //toast.show()
+            changeActivity(getString(R.string.home_dessert))
 
-            val text = "Menu des desserts"
-            val duration = Toast.LENGTH_SHORT
-
-            val toast = Toast.makeText(applicationContext, text, duration)
-            toast.show()
-
-            val Intent = Intent(this,DessertActivity::class.java)
-            startActivity(Intent)
         }
+    }
+
+    private fun changeActivity( category: String ) {
+        val Intent = Intent(this, StarterActivity::class.java).putExtra("category_type",category)
+        Log.i( "INFO", "End of HomeActivity")
+        startActivity(Intent)
+
     }
 }

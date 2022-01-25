@@ -13,10 +13,10 @@
             android:name=".DessertActivity"
             android:exported="false" />
         <activity
-            android:name=".PlatActivity"
+            android:name=".DishActivity"
             android:exported="false" />
         <activity
-            android:name=".EntreeActivity"
+            android:name=".StarterActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"

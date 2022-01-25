@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 
-class DessertActivity : AppCompatActivity() {
+class StarterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dessert)
+        setContentView(R.layout.activity_starter)
 
         val category = intent.getStringExtra( "category_type")
-        findViewById<TextView>(R.id.choiceDessertTitle).text = category
+        findViewById<TextView>(R.id.choiceStarterTitle).text = category
     }
 }
