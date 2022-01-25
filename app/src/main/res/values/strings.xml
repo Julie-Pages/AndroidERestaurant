@@ -3,4 +3,5 @@
     <string name="home_starter">Choisissez votre entrée</string>
     <string name="home_dish">Choisissez votre plat</string>
     <string name="home_dessert">Choisissez votre dessert</string>
+    <string name="home_starter1">Entrée1</string>
 </resources>
