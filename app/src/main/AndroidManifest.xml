@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant">
-
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
         <activity
             android:name=".DishActivity"
             android:exported="false" />
-
         <activity
             android:name=".HomeActivity"
             android:exported="true">

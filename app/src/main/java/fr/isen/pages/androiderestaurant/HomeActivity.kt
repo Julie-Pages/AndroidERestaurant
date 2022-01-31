@@ -8,20 +8,26 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
-
+import androidx.appcompat.widget.AppCompatButton
+import fr.isen.pages.androiderestaurant.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityHomeBinding
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        //setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
 
 //button working
 
-        val starterButton =findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnStarter)
-        val dishButton =findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnDish)
-        val dessertButton =findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnDessert)
+        val starterButton =binding.btnStarter
+        val dishButton =binding.btnDish
+        val dessertButton =binding.btnDessert
 
 
         starterButton.setOnClickListener {
@@ -35,23 +41,14 @@ class HomeActivity : AppCompatActivity() {
 
 
         dishButton.setOnClickListener {
-            //val text = "Menu des plats"
-            //val duration = Toast.LENGTH_SHORT
-            //val toast = Toast.makeText(applicationContext, text, duration)
-            //toast.show()
             changeActivity(getString(R.string.home_dish))
         }
 
 
         dessertButton.setOnClickListener {
-            //val text = "Menu des desserts"
-            //val duration = Toast.LENGTH_SHORT
-            //val toast = Toast.makeText(applicationContext, text, duration)
-            //toast.show()
             changeActivity(getString(R.string.home_dessert))
 
         }
-
 
     }
 
