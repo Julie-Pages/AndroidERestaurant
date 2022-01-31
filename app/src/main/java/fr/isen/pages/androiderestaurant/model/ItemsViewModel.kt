@@ -1,4 +1,4 @@
-package fr.isen.pages.androiderestaurant
+package fr.isen.pages.androiderestaurant.model
 
 import java.io.Serializable
 

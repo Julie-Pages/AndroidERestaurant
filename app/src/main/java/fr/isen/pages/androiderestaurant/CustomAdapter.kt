@@ -1,13 +1,14 @@
 package fr.isen.pages.androiderestaurant
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import fr.isen.pages.androiderestaurant.databinding.RvDesignBinding
+import fr.isen.pages.androiderestaurant.model.DishModel
 
-class CustomAdapter(val mList: List<ItemsViewModel>, val onDishClicked: (ItemsViewModel) -> Unit): RecyclerView.Adapter<CustomAdapter.DishViewHolder>() {
+class CustomAdapter(val mList: List<DishModel>, val onDishClicked: (DishModel) -> Unit): RecyclerView.Adapter<CustomAdapter.DishViewHolder>() {
 
     class DishViewHolder(binding: RvDesignBinding):RecyclerView.ViewHolder(binding.root){
         val dishPicture = binding.imageChoice
@@ -27,19 +28,25 @@ class CustomAdapter(val mList: List<ItemsViewModel>, val onDishClicked: (ItemsVi
     }
 
     // binds the list items to a view
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DishViewHolder, position: Int) {
 
-        holder.dishName.text = mList[position].name
-        holder.dishPicture.setImageResource(mList[position].image)
-        holder.dishPrice.text = mList[position].price
+        val dish = mList[position]
+        holder.dishName.text = dish.name_fr
+        holder.dishPrice.text = dish.prices[0].price + "€"
+
+        //holder.dishPicture.setImageResource(mList[position].image)
+        Picasso.get()
+            .load(if (dish.images[0].isNotEmpty()) dish.images[0] else null)
+            .error(R.drawable.fond).placeholder(R.drawable.fond)
+            .resize(60,60)
+            .into(holder.dishPicture)
 
         holder.itemView.setOnClickListener{
             onDishClicked(mList[position])
         }
 
     }
-
-
 
 
     // return the number of the items in the list
