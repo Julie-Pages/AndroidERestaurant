@@ -38,7 +38,8 @@ class CustomAdapter(val mList: List<DishModel>, val onDishClicked: (DishModel) -
         //holder.dishPicture.setImageResource(mList[position].image)
         Picasso.get()
             .load(if (dish.images[0].isNotEmpty()) dish.images[0] else null)
-            .error(R.drawable.fond).placeholder(R.drawable.fond)
+            .error(R.drawable.no_picture)
+            .placeholder(R.drawable.no_picture)
             .resize(60,60)
             .into(holder.dishPicture)
 

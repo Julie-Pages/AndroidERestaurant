@@ -6,15 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
 import com.android.volley.Request
 import fr.isen.pages.androiderestaurant.databinding.ActivityDishBinding
 import org.json.JSONObject
 import com.android.volley.DefaultRetryPolicy
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.*
 import com.google.gson.Gson
 import fr.isen.pages.androiderestaurant.model.DishModel
 import fr.isen.pages.androiderestaurant.model.DishResultModel
+import java.io.File
 
 class DishActivity : AppCompatActivity() {
 
@@ -30,6 +31,8 @@ class DishActivity : AppCompatActivity() {
         binding.choiceDishTitle.text = category
 
 //webservice
+
+
 
         val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/menu"
@@ -62,8 +65,10 @@ class DishActivity : AppCompatActivity() {
             0, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
             1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         )
+
         // Add the volley post request to the request queue
         queue.add(request)
+
     }
     private fun displayDishes(dishResult: List<DishModel>) {
 //RecyclerView
