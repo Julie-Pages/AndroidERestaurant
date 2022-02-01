@@ -10,8 +10,8 @@
         android:id="@+id/textDetailTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:text="Titre du plat"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,20 +21,61 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/allImageDish"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="225dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/listIngredient"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="4dp"
         android:text="Ingredient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textDetailTitle" />
+
+    <Button
+        android:id="@+id/buttonTotalPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Price"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/numberTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listIngredient" />
+
+    <ImageView
+        android:id="@+id/minusButton"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="44dp"
+        app:layout_constraintBottom_toBottomOf="@+id/numberTotal"
+        app:layout_constraintEnd_toStartOf="@+id/numberTotal"
+        app:layout_constraintTop_toTopOf="@+id/numberTotal"
+        app:srcCompat="@drawable/buttonMinus" />
+
+    <ImageView
+        android:id="@+id/addButton"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/numberTotal"
+        app:layout_constraintStart_toEndOf="@+id/numberTotal"
+        app:layout_constraintTop_toTopOf="@+id/numberTotal"
+        app:srcCompat="@drawable/buttonAdd" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

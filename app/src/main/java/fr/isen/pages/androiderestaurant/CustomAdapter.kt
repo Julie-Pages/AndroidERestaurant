@@ -1,12 +1,18 @@
 package fr.isen.pages.androiderestaurant
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.squareup.picasso.Picasso
 import fr.isen.pages.androiderestaurant.databinding.RvDesignBinding
 import fr.isen.pages.androiderestaurant.model.DishModel
+
+
 
 class CustomAdapter(val mList: List<DishModel>, val onDishClicked: (DishModel) -> Unit): RecyclerView.Adapter<CustomAdapter.DishViewHolder>() {
 
@@ -49,10 +55,11 @@ class CustomAdapter(val mList: List<DishModel>, val onDishClicked: (DishModel) -
 
     }
 
-
-    // return the number of the items in the list
+    //return the number of the items in the list
     override fun getItemCount(): Int {
-        return mList.size
+       return mList.size
     }
+
+
 
 }

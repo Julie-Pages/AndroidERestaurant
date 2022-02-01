@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintTop_toTopOf="@+id/imageFond" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDish"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnDish" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageFond"
         android:layout_width="467dp"
         android:layout_height="635dp"
         android:alpha="0.5"
