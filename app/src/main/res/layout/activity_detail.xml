@@ -66,7 +66,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/numberTotal"
         app:layout_constraintEnd_toStartOf="@+id/numberTotal"
         app:layout_constraintTop_toTopOf="@+id/numberTotal"
-        app:srcCompat="@drawable/buttonMinus" />
+        app:srcCompat="@drawable/button_minus" />
 
     <ImageView
         android:id="@+id/addButton"
@@ -76,6 +76,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/numberTotal"
         app:layout_constraintStart_toEndOf="@+id/numberTotal"
         app:layout_constraintTop_toTopOf="@+id/numberTotal"
-        app:srcCompat="@drawable/buttonAdd" />
+        app:srcCompat="@drawable/button_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

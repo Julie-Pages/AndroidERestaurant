@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentActivity
 import java.io.File
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import org.json.JSONObject
 
 class DetailActivity : AppCompatActivity() {
 
@@ -47,16 +48,15 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-        class dishInBucket( dish: DishModel, numberDish: Int){
+        var dishWithHowMany  = JSONObject("""{"dish": dish, "number": numberDish}""")
 
 
-        }
-        var dishWithHowMany = dishInBucket(dish, numberDish)
+        //var dishWithHowMany = dishInBacket(dish, numberDish)
         val gsonPretty = GsonBuilder().setPrettyPrinting().create()
         binding.buttonTotalPrice.setOnClickListener{
             val jsonTutsListPretty: String = gsonPretty.toJson(dishWithHowMany)
-            File("inBucket.json").writeText(jsonTutsListPretty)
 
+            File("/data/data/fr.isen.pages.androiderestaurant/cache/inBacket.json").writeText(jsonTutsListPretty)
 
 
             val text = "Ajouté au panier"
