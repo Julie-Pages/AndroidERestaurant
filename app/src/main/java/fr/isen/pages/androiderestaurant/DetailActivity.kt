@@ -1,6 +1,7 @@
 package fr.isen.pages.androiderestaurant
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -48,21 +49,22 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-        var dishWithHowMany  = JSONObject("""{"dish": dish, "number": numberDish}""")
 
-
-        //var dishWithHowMany = dishInBacket(dish, numberDish)
         val gsonPretty = GsonBuilder().setPrettyPrinting().create()
         binding.buttonTotalPrice.setOnClickListener{
+            var dishWithHowMany  = JSONObject("""{"dish": "$dish", "number": $numberDish}""")
             val jsonTutsListPretty: String = gsonPretty.toJson(dishWithHowMany)
 
-            File("/data/data/fr.isen.pages.androiderestaurant/cache/inBacket.json").writeText(jsonTutsListPretty)
+            File(cacheDir.absolutePath+"inBacket.json").writeText(jsonTutsListPretty)
 
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
 
             val text = "Ajouté au panier"
             val duration = Toast.LENGTH_SHORT
             val toast = Toast.makeText(applicationContext, text, duration)
             toast.show()
+
         }
 
 

@@ -32,8 +32,6 @@ class DishActivity : AppCompatActivity() {
 
 //webservice
 
-
-
         val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/menu"
         val jsonObject = JSONObject()
@@ -51,7 +49,7 @@ class DishActivity : AppCompatActivity() {
                     "Choisissez votre dessert" -> displayDishes(dishResult.data[2].items)
                 }
 
-                //textView.text = "Response: ${dishResult.data[1].items[0].name_fr}"
+                //binding.textView.text = "Response: ${dishResult.data[1].items[0].name_fr}"
 
             }, {
                 // Error in request
