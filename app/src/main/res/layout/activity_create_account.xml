@@ -137,5 +137,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/textAlreadyHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Déjà un compte ?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordCreateAccount" />
+
+    <TextView
+        android:id="@+id/textAlreadyHaveAccountClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text=" Connectez vous"
+        android:textColor="#03A9F4"
+        app:layout_constraintStart_toEndOf="@+id/textAlreadyHaveAccount"
+        app:layout_constraintTop_toTopOf="@+id/textAlreadyHaveAccount" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

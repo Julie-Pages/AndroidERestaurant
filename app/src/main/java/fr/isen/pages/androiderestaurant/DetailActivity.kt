@@ -54,6 +54,10 @@ class DetailActivity : AppCompatActivity() {
         binding.buttonTotalPrice.setOnClickListener{
             var dishWithHowMany  = JSONObject("""{"dish": "$dish", "number": $numberDish}""")
             val jsonTutsListPretty: String = gsonPretty.toJson(dishWithHowMany)
+            // read file
+            //desierializer
+            //ajout dans la liste le nouveau ou quantitz
+            //reserialize
 
             File(cacheDir.absolutePath+"inBacket.json").writeText(jsonTutsListPretty)
 
