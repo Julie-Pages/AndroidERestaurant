@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".DishActivity">
 
+    <ImageView
+        android:id="@+id/imageBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.35"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/main_background" />
+
     <TextView
         android:id="@+id/restaurantName"
         android:layout_width="wrap_content"
@@ -20,6 +34,8 @@
         android:id="@+id/choiceDishTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="serif"
         android:text="Choisissez votre plat"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +48,7 @@
         android:id="@+id/textRowLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,5 +62,6 @@
             tools:itemCount="5"
             tools:listitem="@layout/rv_design" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

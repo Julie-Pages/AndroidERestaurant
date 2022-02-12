@@ -12,9 +12,19 @@ import androidx.fragment.app.FragmentActivity
 import java.io.File
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.json.Json
 import org.json.JSONObject
+import java.io.Serializable
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
+
+data class  Basket(@SerializedName("items") val item: MutableList<ItemBasket>) : Serializable
+data class ItemBasket(@SerializedName("dish") var dish : DishModel, @SerializedName("numberDish") var numberDish : Int) : Serializable
 
 class DetailActivity : AppCompatActivity() {
+
+
 
     private lateinit var binding: ActivityDetailBinding
     @SuppressLint("ResourceType")
@@ -26,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
         val dish = (intent.getSerializableExtra("dish") as DishModel)
         binding.textDetailTitle.text = dish.name_fr
         var ingredientStr = dish.ingredients.joinToString(", "){it.name_fr}
-        binding.listIngredient.text = ingredientStr
+        binding.listIngredient.text = "Contient : " + ingredientStr
         binding.allImageDish.adapter = DishPictureAdaptater(this,dish.images)
 
         binding.numberTotal.text = "1"
@@ -49,17 +59,28 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-
-        val gsonPretty = GsonBuilder().setPrettyPrinting().create()
         binding.buttonTotalPrice.setOnClickListener{
-            var dishWithHowMany  = JSONObject("""{"dish": "$dish", "number": $numberDish}""")
-            val jsonTutsListPretty: String = gsonPretty.toJson(dishWithHowMany)
-            // read file
-            //desierializer
-            //ajout dans la liste le nouveau ou quantitz
-            //reserialize
+            var jsonFile = File(cacheDir.absolutePath+"/inBacket.json")
 
-            File(cacheDir.absolutePath+"inBacket.json").writeText(jsonTutsListPretty)
+            if(jsonFile.exists()){
+
+                // read file
+                var deserializingFile =GsonBuilder().create().fromJson(jsonFile.readText(), Basket::class.java)
+                //desierializer
+
+                deserializingFile.item.firstOrNull { it.dish == dish }?.let {
+                    it.numberDish += numberDish
+                } ?: run {
+                    deserializingFile.item.add(ItemBasket(dish, numberDish))
+                }
+                //reserialize
+                saveInMemory(deserializingFile, jsonFile)
+
+            }else{
+                val basket = Basket(mutableListOf(ItemBasket(dish, numberDish)))
+                saveInMemory(basket,jsonFile)
+            }
+
 
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -68,9 +89,28 @@ class DetailActivity : AppCompatActivity() {
             val duration = Toast.LENGTH_SHORT
             val toast = Toast.makeText(applicationContext, text, duration)
             toast.show()
-
         }
 
+    }
 
+    private fun saveInMemory(basket: Basket, file: File) {
+        saveDishCount(basket)
+        file.writeText(GsonBuilder().create().toJson(basket))
+    }
+
+    private fun saveDishCount(basket: Basket) {
+        val count = basket.item.sumOf { it.numberDish }
+
+        val sharedPreferences = getSharedPreferences(APP_PREFS, MODE_PRIVATE)
+        sharedPreferences.edit().putInt(BASKET_COUNT, count).apply()
+        invalidateOptionsMenu()
+    }
+
+    companion object {
+        const val APP_PREFS = "app_prefs"
+        const val BASKET_COUNT = "basket_count"
     }
 }
+
+
+

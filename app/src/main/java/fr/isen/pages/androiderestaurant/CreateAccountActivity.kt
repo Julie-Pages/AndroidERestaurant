@@ -12,8 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.pages.androiderestaurant.databinding.ActivityCreateAccountBinding
-import fr.isen.pages.androiderestaurant.model.DishResultModel
-import fr.isen.pages.androiderestaurant.model.NewAccountResultModel
+import fr.isen.pages.androiderestaurant.model.UserModel
 import org.json.JSONObject
 import java.net.URLEncoder
 
@@ -49,10 +48,10 @@ class CreateAccountActivity : AppCompatActivity() {
                     Request.Method.POST,url,jsonObject,
                     { response ->
                         var gson= Gson()
-                        //var newAccountResult = gson.fromJson(response.toString(), NewAccountResultModel::class.java)
+                        var newAccountResult = gson.fromJson(response.toString(), UserModel::class.java)
                         Log.d("","$response")
                         //faire qqc de la requete
-
+                        val idClient = newAccountResult.id
 
                     }, {
                         // Error in request
