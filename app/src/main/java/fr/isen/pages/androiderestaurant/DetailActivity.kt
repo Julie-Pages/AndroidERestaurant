@@ -19,8 +19,6 @@ import java.io.Serializable
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
 
-data class  Basket(@SerializedName("items") val item: MutableList<ItemBasket>) : Serializable
-data class ItemBasket(@SerializedName("dish") var dish : DishModel, @SerializedName("numberDish") var numberDish : Int) : Serializable
 
 class DetailActivity : MenuActivity() {
 
@@ -75,15 +73,16 @@ class DetailActivity : MenuActivity() {
                 }
                 //reserialize
                 saveInMemory(deserializingFile, jsonFile)
+                saveDishPrice(dish.prices[0].price.toFloat() * numberDish)
 
             }else{
                 val basket = Basket(mutableListOf(ItemBasket(dish, numberDish)))
                 saveInMemory(basket,jsonFile)
+                saveDishPrice(dish.prices[0].price.toFloat() * numberDish)
+
             }
 
 
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
 
             val text = "Ajouté au panier"
             val duration = Toast.LENGTH_SHORT
@@ -98,12 +97,25 @@ class DetailActivity : MenuActivity() {
         file.writeText(GsonBuilder().create().toJson(basket))
     }
 
-    private fun saveDishCount(basket: Basket) {
+
+
+    fun saveDishCount(basket: Basket) {
         val count = basket.item.sumOf { it.numberDish }
 
         val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
         sharedPreferences.edit().putInt(getString(R.string.basket_count), count).apply()
         invalidateOptionsMenu()
+    }
+    var priceTotal = 0.0
+    fun saveDishPrice(price : Float){
+
+        //it.numberDish * it.dish.prices[0].price.toFloat()
+        //val price = basket.item.sumOf { binding.buttonTotalPrice.text }
+        priceTotal += price
+        val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
+        sharedPreferences.edit().putFloat(getString(R.string.price_total), priceTotal.toFloat()).apply()
+        invalidateOptionsMenu()
+
     }
 
 }

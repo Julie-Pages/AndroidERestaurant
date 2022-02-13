@@ -8,5 +8,7 @@
     
     <string name="basket_count">TotalQuantity</string>
     <string name="app_prefs">SharedPreference</string>
+    <string name="user_id">UserId</string>
+    <string name="price_total">PriceTotal</string>
 
 </resources>

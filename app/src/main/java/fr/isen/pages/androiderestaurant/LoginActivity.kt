@@ -43,10 +43,12 @@ class LoginActivity : MenuActivity() {
                 Request.Method.POST,url,jsonObject,
                 { response ->
                     var gson= Gson()
-                    //var newAccountResult = gson.fromJson(response.toString(), UserModel::class.java)
+                    var newAccountResult = gson.fromJson(response.toString(), UserModel::class.java)
                     Log.d("","$response")
                     //faire qqc de la requete
-                    //val idClient = newAccountResult.id
+                    val idClient = newAccountResult.id
+                    val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
+                    sharedPreferences.edit().putInt(getString(R.string.user_id), idClient).apply()
 
                 }, {
                     // Error in request
