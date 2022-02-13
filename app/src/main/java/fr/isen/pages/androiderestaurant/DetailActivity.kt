@@ -22,7 +22,7 @@ import kotlinx.serialization.json.*
 data class  Basket(@SerializedName("items") val item: MutableList<ItemBasket>) : Serializable
 data class ItemBasket(@SerializedName("dish") var dish : DishModel, @SerializedName("numberDish") var numberDish : Int) : Serializable
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : MenuActivity() {
 
 
 
@@ -101,15 +101,11 @@ class DetailActivity : AppCompatActivity() {
     private fun saveDishCount(basket: Basket) {
         val count = basket.item.sumOf { it.numberDish }
 
-        val sharedPreferences = getSharedPreferences(APP_PREFS, MODE_PRIVATE)
-        sharedPreferences.edit().putInt(BASKET_COUNT, count).apply()
+        val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
+        sharedPreferences.edit().putInt(getString(R.string.basket_count), count).apply()
         invalidateOptionsMenu()
     }
 
-    companion object {
-        const val APP_PREFS = "app_prefs"
-        const val BASKET_COUNT = "basket_count"
-    }
 }
 
 

@@ -8,10 +8,11 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.widget.AppCompatButton
 import fr.isen.pages.androiderestaurant.databinding.ActivityHomeBinding
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : MenuActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     @SuppressLint("ResourceType")
@@ -22,12 +23,11 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
 //button working
 
-        val starterButton =binding.btnStarter
-        val dishButton =binding.btnDish
-        val dessertButton =binding.btnDessert
+        val starterButton =binding.imageViewStarter
+        val dishButton =binding.imageViewDish
+        val dessertButton =binding.imageViewDessert
 
 
         starterButton.setOnClickListener {
@@ -51,6 +51,26 @@ class HomeActivity : AppCompatActivity() {
         }
 
     }
+/*
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.imageBasket -> {
+            // User chose the "Settings" item, show the app settings UI...
+            startActivity(Intent(this, BasketActivity::class.java))
+            true
+        }
+
+       /* R.id.action_favorite -> {
+            // User chose the "Favorite" action, mark the current item
+            // as a favorite...
+            true
+        }*/
+
+        else -> {
+            // If we got here, the user's action was not recognized.
+            // Invoke the superclass to handle it.
+            super.onOptionsItemSelected(item)
+        }
+    }*/
 
     private fun changeActivity( category: String ) {
         val Intent = Intent(this, DishActivity::class.java).putExtra("category_type",category)

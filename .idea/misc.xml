@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/drawable/pastille.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_basket.xml" value="0.20606884057971014" />
         <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_create_account.xml" value="0.2" />
         <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_dessert.xml" value="0.23324275362318841" />
         <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_detail.xml" value="0.264" />
@@ -15,7 +17,10 @@
         <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_starter.xml" value="0.264" />
         <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/fragment_account.xml" value="0.23278985507246377" />
         <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/fragment_dish_picture.xml" value="0.22554347826086957" />
+        <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/quantity_basket.xml" value="0.8" />
         <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/rv_design.xml" value="0.2" />
+        <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/toolbar.xml" value="0.264" />
+        <entry key="..\:/Users/Julie/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/menu/my_menu.xml" value="0.4" />
       </map>
     </option>
   </component>

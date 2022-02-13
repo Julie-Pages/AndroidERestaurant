@@ -17,7 +17,7 @@ import fr.isen.pages.androiderestaurant.model.DishModel
 import fr.isen.pages.androiderestaurant.model.DishResultModel
 import java.io.File
 
-class DishActivity : AppCompatActivity() {
+class DishActivity : MenuActivity() {
 
     private lateinit var binding: ActivityDishBinding
     @SuppressLint("ResourceType")

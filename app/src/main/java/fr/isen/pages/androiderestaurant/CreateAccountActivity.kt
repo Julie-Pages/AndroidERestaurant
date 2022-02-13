@@ -16,7 +16,7 @@ import fr.isen.pages.androiderestaurant.model.UserModel
 import org.json.JSONObject
 import java.net.URLEncoder
 
-class CreateAccountActivity : AppCompatActivity() {
+class CreateAccountActivity : MenuActivity() {
 
     private lateinit var binding: ActivityCreateAccountBinding
     override fun onCreate(savedInstanceState: Bundle?) {

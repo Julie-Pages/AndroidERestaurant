@@ -14,7 +14,7 @@ import fr.isen.pages.androiderestaurant.databinding.ActivityLoginBinding
 import fr.isen.pages.androiderestaurant.model.UserModel
 import org.json.JSONObject
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : MenuActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
