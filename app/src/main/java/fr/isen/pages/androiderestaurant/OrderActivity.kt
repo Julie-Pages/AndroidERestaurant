@@ -20,7 +20,7 @@ class OrderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order)
         val msg =  File(cacheDir.absolutePath+"/inBacket.json")
-        val idUser = this.getSharedPreferences(getString(R.string.app_prefs), Context.MODE_PRIVATE).getInt(getString(R.string.user_id), 0)
+        val idUser = this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).getInt(getString(R.string.user_id), 0)
 
         val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/user/order"
@@ -32,12 +32,21 @@ class OrderActivity : AppCompatActivity() {
         val request = JsonObjectRequest(
             Request.Method.POST,url,jsonObject,
             { response ->
-                var gson= Gson()
-                var newAccountResult = gson.fromJson(response.toString(), UserModel::class.java)
+                this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).edit()
+                    .remove("UserPassword").apply()
+                val text = "Commande envoyée"
+                val duration = Toast.LENGTH_SHORT
+                val toast = Toast.makeText(applicationContext, text, duration)
+                toast.show()
+                deleteOfBasketMemory()
                 Log.d("","$response")
 
             }, {
                 // Error in request
+                val text = "Echec de l'envoi"
+                val duration = Toast.LENGTH_SHORT
+                val toast = Toast.makeText(applicationContext, text, duration)
+                toast.show()
                 Log.e( "","Volley error: $it")
             })
 
@@ -52,4 +61,11 @@ class OrderActivity : AppCompatActivity() {
         // Add the volley post request to the request queue
         queue.add(request)
     }
+    fun deleteOfBasketMemory() {
+        File(cacheDir.absolutePath+"/inBacket.json").delete()
+        val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
+        sharedPreferences.edit().putInt(getString(R.string.basket_count), 0).apply()
+        sharedPreferences.edit().putFloat(getString(R.string.price_total), 0.0F).apply()
+        invalidateOptionsMenu()
     }
+}

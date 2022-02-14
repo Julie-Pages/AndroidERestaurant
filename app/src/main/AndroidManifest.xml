@@ -13,22 +13,51 @@
         android:theme="@style/Theme.AndroidERestaurant">
         <activity
             android:name=".OrderActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeActivity" />
+        </activity>
+
         <activity
             android:name=".BasketActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".HomeActivity" />
+        </activity>
+
         <activity
             android:name=".CreateAccountActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BasketActivity" />
+        </activity>
+
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BasketActivity" />
+        </activity>
         <activity
             android:name=".DetailActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DishActivity" />
+        </activity>
+
         <activity
             android:name=".DishActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeActivity" />
+        </activity>
         <activity
             android:name=".HomeActivity"
             android:exported="true">

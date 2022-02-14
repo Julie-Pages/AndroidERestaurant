@@ -83,7 +83,6 @@ class DetailActivity : MenuActivity() {
             }
 
 
-
             val text = "Ajouté au panier"
             val duration = Toast.LENGTH_SHORT
             val toast = Toast.makeText(applicationContext, text, duration)
@@ -114,6 +113,17 @@ class DetailActivity : MenuActivity() {
         sharedPreferences.edit().putFloat(getString(R.string.price_total), priceTotal.toFloat()).apply()
         invalidateOptionsMenu()
 
+    }
+
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

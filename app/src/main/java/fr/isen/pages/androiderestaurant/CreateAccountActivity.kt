@@ -13,6 +13,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.pages.androiderestaurant.databinding.ActivityCreateAccountBinding
+import fr.isen.pages.androiderestaurant.model.NewAccountResultModel
 import fr.isen.pages.androiderestaurant.model.UserModel
 import org.json.JSONObject
 import java.net.URLEncoder
@@ -49,11 +50,12 @@ class CreateAccountActivity : MenuActivity() {
                     Request.Method.POST,url,jsonObject,
                     { response ->
                         var gson= Gson()
-                        var newAccountResult = gson.fromJson(response.toString(), UserModel::class.java)
+                        var newAccountResult = gson.fromJson(response.toString(), NewAccountResultModel::class.java)
                         Log.d("","$response")
-                        val email = newAccountResult.email
-                        val password = newAccountResult.password
-                        idClient = newAccountResult.id
+                        val email =  newAccountResult.data.email
+                        val password = newAccountResult.data.password
+                        idClient = newAccountResult.data.id
+
                         val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
                         sharedPreferences.edit().putString(getString(R.string.user_mail), email).apply()
                         sharedPreferences.edit().putString(getString(R.string.user_password), password).apply()
@@ -65,8 +67,6 @@ class CreateAccountActivity : MenuActivity() {
                         toast.show()
 
                         val intent = Intent(this, OrderActivity::class.java)
-                        this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).edit()
-                            .remove("UserPassword").apply()
                         startActivity(intent)
 
                     }, {
@@ -85,7 +85,7 @@ class CreateAccountActivity : MenuActivity() {
                 // Add the volley post request to the request queue
                 queue.add(request)
 
-                if (this.getSharedPreferences(getString(R.string.app_prefs), Context.MODE_PRIVATE).getInt(getString(R.string.user_id), 0) != 0) {
+                if (this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).getInt(getString(R.string.user_id), 0) != 0) {
                     val intent = Intent(this, OrderActivity::class.java)
                     this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).edit()
                         .remove("UserPassword").apply()

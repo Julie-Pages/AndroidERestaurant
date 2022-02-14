@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.pages.androiderestaurant.databinding.ActivityDishBinding
 import fr.isen.pages.androiderestaurant.databinding.ActivityLoginBinding
+import fr.isen.pages.androiderestaurant.model.NewAccountResultModel
 import fr.isen.pages.androiderestaurant.model.UserModel
 import org.json.JSONObject
 
@@ -23,12 +24,11 @@ class LoginActivity : MenuActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.textCreateAccountClick.setOnClickListener{
+        binding.textCreateAccountClick.setOnClickListener{ //go to CreateAccount
 
             val intent = Intent(this, CreateAccountActivity::class.java)
             startActivity(intent)
         }
-        var idClient = 0
         binding.buttonLogin.setOnClickListener{
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
@@ -44,18 +44,14 @@ class LoginActivity : MenuActivity() {
                 Request.Method.POST,url,jsonObject,
                 { response ->
                     var gson= Gson()
-                    var newAccountResult = gson.fromJson(response.toString(), UserModel::class.java)
+                    var newAccountResult = gson.fromJson(response.toString(), NewAccountResultModel::class.java)
                     Log.d("","$response")
-                    if(newAccountResult.id != 0) {
-                        idClient = newAccountResult.id
-                        val sharedPreferences =
-                            getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
+                    if(newAccountResult.data.id != 0) {
+                        val idClient = newAccountResult.data.id
+                        val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
                         sharedPreferences.edit().putInt(getString(R.string.user_id), idClient)
                             .apply()
                         val intent = Intent(this, OrderActivity::class.java)
-                        this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
-                            .edit()
-                            .remove("UserPassword").apply()
                         startActivity(intent)
                     }else{
                         val text = "Compte inexistant ou mauvais mot de passe"

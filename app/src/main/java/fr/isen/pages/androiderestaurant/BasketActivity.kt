@@ -31,8 +31,8 @@ class BasketActivity : MenuActivity() {
         }
 
         binding.deleteBasket.setOnClickListener{
-            if (this.getSharedPreferences(getString(R.string.app_prefs), Context.MODE_PRIVATE).getInt(getString(R.string.basket_count), 0) != 0) {
-                deleteOfMemory()
+            if (this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).getInt(getString(R.string.basket_count), 0) != 0) {
+                deleteOfBasketMemory()
                 finish()
                 startActivity(Intent(this, BasketActivity::class.java))
             }
@@ -40,7 +40,7 @@ class BasketActivity : MenuActivity() {
 
         binding.buttonOrder.setOnClickListener{
 
-            val idClient = this.getSharedPreferences(getString(R.string.app_prefs), Context.MODE_PRIVATE).getInt(getString(R.string.user_id), 0)
+            val idClient = this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).getInt(getString(R.string.user_id), 0)
 
             if (idClient == 0){ //have to login or create account
 
@@ -49,17 +49,18 @@ class BasketActivity : MenuActivity() {
             }else { //already login
                 val intent = Intent(this, OrderActivity::class.java)
                 this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).edit().remove("UserPassword").apply()
+                invalidateOptionsMenu()
                 startActivity(intent)
 
             }
 
         }
 
-        var price = this.getSharedPreferences(getString(R.string.app_prefs), Context.MODE_PRIVATE).getFloat(getString(R.string.price_total),0.0F)
+        var price = this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).getFloat(getString(R.string.price_total),0.0F)
         binding.priceTotalBasket.text = "Prix total : " + price + " €"
     }
 
-    fun deleteOfMemory() {
+    fun deleteOfBasketMemory() {
         File(cacheDir.absolutePath+"/inBacket.json").delete()
         val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
         sharedPreferences.edit().putInt(getString(R.string.basket_count), 0).apply()

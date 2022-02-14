@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+    <item android:id="@+id/logOut"
+        android:title="Déconnection"
+        android:icon="@drawable/ic_baseline_power_settings_new_24"
+        app:showAsAction="always"/>
+
+
     <item android:id="@+id/imageBasket"
         android:title="imageBasket"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
