@@ -1,5 +1,6 @@
 package fr.isen.pages.androiderestaurant
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,7 +33,7 @@ class CreateAccountActivity : MenuActivity() {
                 val address = binding.addressCreateAccountInput.text.toString()
                 val email = binding.emailCreateAccountInput.text.toString()
                 val password = binding.passwordCreateAccountInput.text.toString()
-
+                var idClient =0
                 //request post
                 val queue = Volley.newRequestQueue(this)
                 val url = "http://test.api.catering.bluecodegames.com/user/register"
@@ -50,8 +51,23 @@ class CreateAccountActivity : MenuActivity() {
                         var gson= Gson()
                         var newAccountResult = gson.fromJson(response.toString(), UserModel::class.java)
                         Log.d("","$response")
-                        //faire qqc de la requete
-                        val idClient = newAccountResult.id
+                        val email = newAccountResult.email
+                        val password = newAccountResult.password
+                        idClient = newAccountResult.id
+                        val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
+                        sharedPreferences.edit().putString(getString(R.string.user_mail), email).apply()
+                        sharedPreferences.edit().putString(getString(R.string.user_password), password).apply()
+                        sharedPreferences.edit().putInt(getString(R.string.user_id), idClient).apply()
+
+                        val text = "Compte créé"
+                        val duration = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(applicationContext, text, duration)
+                        toast.show()
+
+                        val intent = Intent(this, OrderActivity::class.java)
+                        this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).edit()
+                            .remove("UserPassword").apply()
+                        startActivity(intent)
 
                     }, {
                         // Error in request
@@ -69,10 +85,13 @@ class CreateAccountActivity : MenuActivity() {
                 // Add the volley post request to the request queue
                 queue.add(request)
 
-                val text = "Incription finie"
-                val duration = Toast.LENGTH_SHORT
-                val toast = Toast.makeText(applicationContext, text, duration)
-                toast.show()
+                if (this.getSharedPreferences(getString(R.string.app_prefs), Context.MODE_PRIVATE).getInt(getString(R.string.user_id), 0) != 0) {
+                    val intent = Intent(this, OrderActivity::class.java)
+                    this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).edit()
+                        .remove("UserPassword").apply()
+                    startActivity(intent)
+                }
+
             }
         }
 

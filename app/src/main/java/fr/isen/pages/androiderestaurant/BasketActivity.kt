@@ -41,10 +41,15 @@ class BasketActivity : MenuActivity() {
         binding.buttonOrder.setOnClickListener{
 
             val idClient = this.getSharedPreferences(getString(R.string.app_prefs), Context.MODE_PRIVATE).getInt(getString(R.string.user_id), 0)
-            if (idClient == 0){ //have to login
+
+            if (idClient == 0){ //have to login or create account
+
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }else { //already login
+                val intent = Intent(this, OrderActivity::class.java)
+                this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE).edit().remove("UserPassword").apply()
+                startActivity(intent)
 
             }
 
@@ -76,6 +81,7 @@ class BasketActivity : MenuActivity() {
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("dish", it)
             startActivity(intent)
+
         }
     }
 }

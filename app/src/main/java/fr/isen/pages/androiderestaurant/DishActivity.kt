@@ -81,6 +81,7 @@ class DishActivity : MenuActivity() {
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("dish", it)
             startActivity(intent)
+
         }
     }
 }

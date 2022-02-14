@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -27,7 +28,7 @@ class LoginActivity : MenuActivity() {
             val intent = Intent(this, CreateAccountActivity::class.java)
             startActivity(intent)
         }
-
+        var idClient = 0
         binding.buttonLogin.setOnClickListener{
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
@@ -45,11 +46,23 @@ class LoginActivity : MenuActivity() {
                     var gson= Gson()
                     var newAccountResult = gson.fromJson(response.toString(), UserModel::class.java)
                     Log.d("","$response")
-                    //faire qqc de la requete
-                    val idClient = newAccountResult.id
-                    val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
-                    sharedPreferences.edit().putInt(getString(R.string.user_id), idClient).apply()
-
+                    if(newAccountResult.id != 0) {
+                        idClient = newAccountResult.id
+                        val sharedPreferences =
+                            getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
+                        sharedPreferences.edit().putInt(getString(R.string.user_id), idClient)
+                            .apply()
+                        val intent = Intent(this, OrderActivity::class.java)
+                        this.getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
+                            .edit()
+                            .remove("UserPassword").apply()
+                        startActivity(intent)
+                    }else{
+                        val text = "Compte inexistant ou mauvais mot de passe"
+                        val duration = Toast.LENGTH_LONG
+                        val toast = Toast.makeText(applicationContext, text, duration)
+                        toast.show()
+                    }
                 }, {
                     // Error in request
                     Log.e( "","Volley error: $it")
@@ -66,7 +79,6 @@ class LoginActivity : MenuActivity() {
             // Add the volley post request to the request queue
             queue.add(request)
         }
-
 
 
     }

@@ -4,4 +4,4 @@ import java.io.Serializable
 
 data class NewAccountResultModel(val data : List<UserModel>): Serializable
 
-data class UserModel(val id : Int)
+data class UserModel(val id : Int, val email : String, val password : String)

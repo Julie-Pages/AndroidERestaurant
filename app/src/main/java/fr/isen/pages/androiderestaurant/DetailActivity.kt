@@ -109,8 +109,6 @@ class DetailActivity : MenuActivity() {
     var priceTotal = 0.0
     fun saveDishPrice(price : Float){
 
-        //it.numberDish * it.dish.prices[0].price.toFloat()
-        //val price = basket.item.sumOf { binding.buttonTotalPrice.text }
         priceTotal += price
         val sharedPreferences = getSharedPreferences(getString(R.string.app_prefs), MODE_PRIVATE)
         sharedPreferences.edit().putFloat(getString(R.string.price_total), priceTotal.toFloat()).apply()

@@ -5,10 +5,13 @@
     <string name="home_dessert">Choisissez votre dessert</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    
+
     <string name="basket_count">TotalQuantity</string>
     <string name="app_prefs">SharedPreference</string>
-    <string name="user_id">UserId</string>
     <string name="price_total">PriceTotal</string>
+    <string name="user_id">UserId</string>
+    <string name="user_mail">UserMail</string>
+    <string name="user_password">UserPassword</string>
+
 
 </resources>
